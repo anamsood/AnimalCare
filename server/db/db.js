@@ -5,13 +5,13 @@ dotenv.config({
 	path: "./.env",
 });
 
-const connectDb = await mongoose
-	.connect(`${process.env.MONGO_URI}/animalcare`)
-	.then(() => {
+const connectDb = async () => {
+	try {
+		await mongoose.connect(`${process.env.MONGO_URI}/animalcare`);
 		console.log("mongodb connected");
-	})
-	.catch((error) => {
-		console.log("mongodb error :", error);
-	});
+	} catch (error) {
+		console.log("error in mongo file");
+	}
+};
 
 export default connectDb;
