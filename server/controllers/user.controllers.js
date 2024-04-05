@@ -75,7 +75,7 @@ const login = async (req, res) => {
 		.status(200)
 		.cookie("accessToken", accessToken, options)
 		.cookie("refreshToken", refreshToken, options)
-		.json("User loggedin successfully");
+		.json("User loggedIn successfully");
 };
 
 const logout = async (req, res) => {
@@ -91,7 +91,7 @@ const logout = async (req, res) => {
 				new: true,
 			}
 		);
-		console.log("reached in logout controller");
+
 		const options = {
 			httpOnly: true,
 			secure: true,
