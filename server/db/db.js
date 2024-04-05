@@ -10,7 +10,7 @@ const connectDb = async () => {
 		await mongoose.connect(`${process.env.MONGO_URI}/animalcare`);
 		console.log("mongodb connected");
 	} catch (error) {
-		console.log("error in mongo file");
+		console.log(error, "error in mongo file");
 	}
 };
 

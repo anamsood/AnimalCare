@@ -17,14 +17,6 @@ const sheltersSchema = mongoose.Schema({
 	distance: {
 		type: Number,
 	},
-	openFrom: {
-		type: String,
-		required: true,
-	},
-	openTill: {
-		type: String,
-		required: true,
-	},
 });
 
 const Shelters = new mongoose.model("Shelters", sheltersSchema);
