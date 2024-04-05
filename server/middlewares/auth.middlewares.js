@@ -3,8 +3,7 @@ import { User } from "../models/user.models.js";
 
 export const verifyJWT = async (req, res, next) => {
 	try {
-		console.log(req.cookies);
-		const token = req.cookies?.accessToken || req.header("Set-Cookie")?.accessToken;
+		const token = req.cookies?.accessToken;
 		if (!token) {
 			return res.status(401).send("token not found");
 		}

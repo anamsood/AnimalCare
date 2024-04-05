@@ -58,7 +58,6 @@ const login = async (req, res) => {
 	}
 
 	const isPasswordValid = await user.isPasswordCorrect(password);
-	console.log(isPasswordValid);
 
 	if (!isPasswordValid) {
 		return res.status(402).send("Incorrect password");

@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.post("/register", registerUser);
 router.post("/login", login);
-router.route("/logout").post(verifyJWT, logout);
+router.post("/logout", verifyJWT, logout);
 // router.post("helping-form", helpingForm);
 // router.post("donatine-form", donationForm);
 
