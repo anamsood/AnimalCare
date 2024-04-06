@@ -1,6 +1,10 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const formSchema = mongoose.Schema({
+	email: {
+		type: String,
+		required: true,
+	},
 	specie: {
 		type: String,
 		required: true,
@@ -11,7 +15,7 @@ const formSchema = mongoose.Schema({
 	},
 	image: {
 		type: String,
-		required: true,
+		required: false,
 	},
 	recieveEmail: {
 		type: Boolean,
@@ -21,3 +25,4 @@ const formSchema = mongoose.Schema({
 });
 
 const Form = new mongoose.model("Form", formSchema);
+export { Form };
