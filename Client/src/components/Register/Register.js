@@ -6,7 +6,9 @@ export default function Register() {
 	const [fullname, SetFullname] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const [contact, setContact] = useState("");
+	const [contact, setContact] = useState();
+	const [state, setState] = useState("");
+	const [city, setCity] = useState("");
 
 	const navigate = useNavigate();
 
@@ -22,20 +24,30 @@ export default function Register() {
 	function passwordHandler(event) {
 		setPassword(event.target.value);
 	}
+	function stateHandler(event) {
+		setState(event.target.value);
+	}
+	function cityHandler(event) {
+		setCity(event.target.value);
+	}
 
 	const handleFormSubmit = async (event) => {
+		event.preventDefault();
 		try {
-			const result = await axios.post("http://localhost:3000/register", {
+			const result = await axios.post("/api/v2/register", {
 				fullname: fullname,
 				password: password,
 				email: email,
 				contact: contact,
+				state: state,
+				city: city,
 			});
+			console.log(result);
 			if (result.status === 201) {
-				navigate("/login");
+				navigate("/");
 			}
 		} catch (error) {
-			console.log("error in register from: ", error);
+			console.log("error in register form: ", error);
 		}
 	};
 
@@ -50,6 +62,10 @@ export default function Register() {
 				<input type="number" value={contact} onChange={contactHandler}></input>
 				<label>Password: </label>
 				<input type="password" value={password} onChange={passwordHandler}></input>
+				<label>State: </label>
+				<input type="text" value={state} onChange={stateHandler}></input>
+				<label>City: </label>
+				<input type="text" value={city} onChange={cityHandler}></input>
 				<button>Submit</button>
 			</form>
 		</>

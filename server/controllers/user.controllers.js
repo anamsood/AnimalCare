@@ -23,7 +23,7 @@ const registerUser = async (req, res) => {
 		return res.status(402).json("Error: All fields are required");
 	}
 
-	if (contact.length != 10) {
+	if (contact?.length != 10) {
 		return res.status(402).json("Enter a valid contact");
 	}
 
@@ -38,7 +38,7 @@ const registerUser = async (req, res) => {
 		};
 		await User.create(user);
 
-		return res.status(201).json({ user });
+		return res.status(201).send({ user, message: "user registered successfully" });
 	} catch (error) {
 		console.log(`error in user controller:${error}`);
 	}
@@ -54,7 +54,7 @@ const login = async (req, res) => {
 	const user = await User.findOne({ email });
 
 	if (!user) {
-		return res.status(401, "User does not exist");
+		return res.status(401).send("User does not exist");
 	}
 
 	const isPasswordValid = await user.isPasswordCorrect(password);
