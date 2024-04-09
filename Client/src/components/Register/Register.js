@@ -34,7 +34,7 @@ export default function Register() {
 	const handleFormSubmit = async (event) => {
 		event.preventDefault();
 		try {
-			const result = await axios.post("/api/v2/register", {
+			const result = await axios.post("http://localhost:4000/api/v2/register", {
 				fullname: fullname,
 				password: password,
 				email: email,
