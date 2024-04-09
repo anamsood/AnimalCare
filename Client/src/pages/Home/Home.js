@@ -1,29 +1,44 @@
 import "./Home.css";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
+import Feed from "../../assets/feed-animals.jpeg";
+import Adopt from "../../assets/adopt.jpeg";
+import Shelter from "../../assets/build-shelter.jpeg";
+import NavBar from "../../components/Navbar/Navbar.js";
 
 const Home = () => {
-	const navigate = useNavigate();
+	// const navigate = useNavigate();
 	return (
 		<>
-			<div id="nav-home">
-				<div className="logo">
-					<img src="" alt="logo" />
-					<h4>Little Paws</h4>
+			<NavBar />
+			<div id="body">
+				<button>Donate now!</button>
+			</div>
+			<div id="main-section">
+				<h1>How can you contribute?</h1>
+				<div className="main">
+					<span>
+						<img src={Adopt} alt="adopt-img" />
+						<p>Adopt someone in need</p>
+					</span>
+					<span>
+						<img src={Feed} alt="volunteer-img" />
+						<p>Donate and let the volunteers feed instead of you!</p>
+					</span>
 				</div>
-				{/* <FontAwsome icon="fa - solid" /> */}
+			</div>
+			<div id="stats">
+				<img src={Shelter} alt="stats-img" />
+				<h2>
+					Little Paws has contributed to building and supporting<br></br> 500+ shelters till now and
+					helping over 200+ animals<br></br> finding their forever home.
+				</h2>
+			</div>
+			<div id="helping">
+				<h1>Want to help an injured animal?</h1>
 				<span>
-					<p>Shelters</p>
-					<select>
-						<option>All</option>
-						<option>Chandigarh</option>
-						<option>Delhi</option>
-						<option>Zirakpur</option>
-					</select>
+					<button>Help</button>
+					<p>Fill this form and nearest available shelters will be there in no time.</p>
 				</span>
-				<input type="text" placeholder="search " />
-				<p>Help a friend!</p>
-				<p>Contact Us</p>
-				<p onClick={() => navigate("/login")}>Login</p>
 			</div>
 		</>
 	);

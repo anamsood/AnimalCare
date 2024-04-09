@@ -1,24 +1,29 @@
 import "./Navbar.css";
-// import { FontAwsome } from "@fortawesome/fontawesome-free";
+import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
+	const navigate = useNavigate();
 	return (
 		<>
-			<div id="nav">
+			<div id="nav-home">
 				<div className="logo">
 					<img src="" alt="logo" />
-					<h4>Animal Care</h4>
+					<h4>Little Paws</h4>
 				</div>
 				{/* <FontAwsome icon="fa - solid" /> */}
-				<img src="" alt="location icon" />
-				<select>
-					<option>punjab</option>
-					<option>chnaodk</option>
-					<option>pundscsd</option>
-				</select>
+				<span>
+					<p>Shelters</p>
+					<select>
+						<option>All</option>
+						<option>Chandigarh</option>
+						<option>Delhi</option>
+						<option>Zirakpur</option>
+					</select>
+				</span>
 				<input type="text" placeholder="search " />
-				<p>contact us</p>
-				<img src="" alt="account icon" />
+				<p>Help a friend!</p>
+				<p>Contact Us</p>
+				<p onClick={() => navigate("/login")}>Login</p>
 			</div>
 		</>
 	);
