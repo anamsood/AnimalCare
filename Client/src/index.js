@@ -1,18 +1,23 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Register from "./components/Register/Register.js";
-import Login from "./components/Login/login.js";
+import Register from "./pages/Register/Register.js";
+import Login from "./pages/Login/login.js";
+import Home from "./pages/Home/Home.js";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
 	{
 		path: "/",
-		element: <Login />,
+		element: <Home />,
 	},
 	{
 		path: "/register",
 		element: <Register />,
 		errorElement: <h1>page not found</h1>,
+	},
+	{
+		path: "/login",
+		element: <Login />,
 	},
 ]);
 // root.render(<App />);

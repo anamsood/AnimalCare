@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
+import "./Register.css";
 
 export default function Register() {
 	const [fullname, SetFullname] = useState("");
@@ -44,7 +45,7 @@ export default function Register() {
 			});
 			console.log(result);
 			if (result.status === 201) {
-				navigate("/");
+				navigate("/login");
 			}
 		} catch (error) {
 			console.log("error in register form: ", error);
@@ -52,22 +53,37 @@ export default function Register() {
 	};
 
 	return (
-		<>
+		<div id="register">
+			<h2>Create an account!</h2>
 			<form onSubmit={handleFormSubmit} className="register-form">
-				<label>Fullname: </label>
-				<input type="text" value={fullname} onChange={nameHandler}></input>
-				<label>Email: </label>
-				<input type="email" value={email} onChange={emailHandler}></input>
-				<label>Phone no.: </label>
-				<input type="number" value={contact} onChange={contactHandler}></input>
-				<label>Password: </label>
-				<input type="password" value={password} onChange={passwordHandler}></input>
-				<label>State: </label>
-				<input type="text" value={state} onChange={stateHandler}></input>
-				<label>City: </label>
-				<input type="text" value={city} onChange={cityHandler}></input>
-				<button>Submit</button>
+				<label>
+					Fullname: <input type="text" value={fullname} onChange={nameHandler}></input>
+				</label>
+
+				<label>
+					Email: <input type="email" value={email} onChange={emailHandler}></input>
+				</label>
+
+				<label>
+					Phone no.: <input type="number" value={contact} onChange={contactHandler}></input>
+				</label>
+
+				<label>
+					Password: <input type="password" value={password} onChange={passwordHandler}></input>
+				</label>
+				<label>
+					State: <input type="text" value={state} onChange={stateHandler}></input>
+				</label>
+				<label>
+					City: <input type="text" value={city} onChange={cityHandler}></input>
+				</label>
+				<span>
+					<button onClick={() => navigate("/")}>Submit</button>
+					<Link to={"/login"}>
+						<h5>Already registered? Login in here!</h5>
+					</Link>
+				</span>
 			</form>
-		</>
+		</div>
 	);
 }
