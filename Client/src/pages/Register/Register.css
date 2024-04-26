@@ -5,15 +5,11 @@
 #register {
 	display: flex;
 	height: 100vh;
-	/* justify-content: space-between; */
 	align-items: center;
 	justify-content: center;
-	height: 100vh;
+	height: 80vh;
 }
-#register img {
-	width: 30%;
-	height: 20%;
-}
+
 #register-form {
 	display: flex;
 	flex-direction: column;
@@ -21,29 +17,4 @@
 	margin-left: 10px;
 	border: 1px black solid;
 	border-radius: 2%;
-}
-#register-form .text {
-	font-size: 30px;
-	display: flex;
-	font-weight: bold;
-	justify-content: center;
-}
-.register-form input {
-	height: 20px;
-	width: 30%;
-}
-.register-form label {
-	font-size: 20px;
-}
-.register-form button {
-	width: 30%;
-	height: 25px;
-	margin-bottom: 5px;
-}
-
-.register-form span {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
 }

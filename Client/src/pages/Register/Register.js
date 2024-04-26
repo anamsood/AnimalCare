@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import shelter from "../../assets/build-shelter.jpeg";
 import Navbar from "../../components/Navbar/Navbar.js";
+import Footer from "../../components/Footer/Footer.js";
 
 import "./Register.css";
 
 export default function Register() {
-	const [fullname, SetFullname] = useState("");
+	const [firstname, setFirstname] = useState("");
+	const [lastname, setLastname] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [contact, setContact] = useState();
@@ -16,8 +17,11 @@ export default function Register() {
 
 	const navigate = useNavigate();
 
-	function nameHandler(event) {
-		SetFullname(event.target.value);
+	function firstNameHandler(event) {
+		setFirstname(event.target.value);
+	}
+	function lastNameHandler(event) {
+		setLastname(event.target.value);
 	}
 	function emailHandler(event) {
 		setEmail(event.target.value);
@@ -36,6 +40,7 @@ export default function Register() {
 	}
 
 	const handleFormSubmit = async (event) => {
+		const fullname = `${firstname} ${lastname}`;
 		event.preventDefault();
 		try {
 			const result = await axios.post("http://localhost:4000/api/v2/register", {
@@ -76,6 +81,8 @@ export default function Register() {
 										<input
 											type="text"
 											name="first-name"
+											onChange={firstNameHandler}
+											value={firstname}
 											id="first-name"
 											autoComplete="given-name"
 											className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -94,6 +101,8 @@ export default function Register() {
 										<input
 											type="text"
 											name="last-name"
+											onChange={lastNameHandler}
+											value={lastname}
 											id="last-name"
 											autoComplete="family-name"
 											className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -120,27 +129,6 @@ export default function Register() {
 										/>
 									</div>
 								</div>
-
-								{/* <div className="sm:col-span-3">
-									<label
-										htmlFor="country"
-										className="block text-sm font-medium leading-6 text-gray-900"
-									>
-										State
-									</label>
-									<div className="mt-2">
-										{<select
-											id="country"
-											name="country"
-											autoComplete="country-name"
-											className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
-										>
-											<option>Punjab</option>
-											<option>Chandigarh</option>
-											<option>Mexico</option>
-										</select>}
-									</div> 
-								</div> */}
 
 								<div className="col-span-3">
 									<label
@@ -242,8 +230,8 @@ export default function Register() {
 						</button>
 					</div>
 				</form>
-				{/* <img src={shelter} /> */}
 			</div>
+			<Footer />
 		</>
 	);
 }

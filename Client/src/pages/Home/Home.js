@@ -1,14 +1,11 @@
 import "./Home.css";
-// import { useNavigate } from "react-router-dom";
 import Feed from "../../assets/feed-animals.jpeg";
 import Adopt from "../../assets/adopt.jpeg";
-import Shelter from "../../assets/build-shelter.jpeg";
 import NavBar from "../../components/Navbar/Navbar.js";
-import bgimg from "../../assets/bgimg.jpeg";
 import logo from "../../assets/logo.png";
+import Footer from "../../components/Footer/Footer.js";
 
 const Home = () => {
-	// const navigate = useNavigate();
 	return (
 		<>
 			<NavBar />
@@ -17,7 +14,6 @@ const Home = () => {
 					We beleive every animal<br></br> deserves a second chance.
 				</p>
 				<button>Donate Now!</button>
-				{/* <img src={bgimg} alt="" /> */}
 			</div>
 			<div id="stats">
 				<img src={logo} alt="stats-img" />
@@ -50,6 +46,7 @@ const Home = () => {
 				</span>
 				<button>Help</button>
 			</div>
+			<Footer />
 		</>
 	);
 };
