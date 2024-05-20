@@ -1,22 +1,13 @@
 import mongoose from "mongoose";
 
 const sheltersSchema = mongoose.Schema({
-	name: {
-		type: String,
-		required: true,
-		unique: true,
-	},
-	lacation: {
-		type: String,
-		required: true,
-	},
-	phone: {
-		type: Number,
-		required: true,
-	},
-	distance: {
-		type: Number,
-	},
+	id: Number,
+	title: String,
+	location: String,
+	image: String,
+	city: String,
+	open: String,
+	close: String,
 });
 
-const Shelters = new mongoose.model("Shelters", sheltersSchema);
+export const Shelters = new mongoose.model("allshelters", sheltersSchema);

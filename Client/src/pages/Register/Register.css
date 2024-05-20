@@ -18,3 +18,9 @@
 	border: 1px black solid;
 	border-radius: 2%;
 }
+.text {
+	font-weight: bold;
+	font-size: 25px;
+	display: flex;
+	justify-content: center;
+}

@@ -1,0 +1,44 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+#donation {
+	align-items: center;
+	display: flex;
+	padding: 10px;
+	margin: 10px;
+	justify-content: center;
+}
+#donation-form {
+	min-height: 40vh;
+	display: flex;
+	flex-direction: column;
+	width: 45vw;
+	justify-content: space-between;
+	border: 1px solid darkolivegreen;
+	padding: 15px;
+}
+.number {
+	width: 55%;
+	height: 4vh;
+}
+.plan label {
+	margin-right: 15px;
+	font-weight: lighter;
+}
+#donation-form select {
+	width: 55%;
+	height: 4vh;
+}
+label {
+	font-weight: bold;
+	font-size: 20px;
+	font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+#donation-form button {
+	border: 0.8px solid black;
+	width: 17%;
+	height: 5vh;
+	font-size: 20px;
+	background-color: rgba(186, 19, 19, 0.598);
+}

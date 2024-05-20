@@ -4,14 +4,14 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Fragment } from "react";
 import Icon from "../../assets/icon.png";
 import Logo from "../../assets/logo.png";
-
+import DonationForm from "../DonationForm/DonationForm";
 function classNames(...classes) {
 	return classes.filter(Boolean).join(" ");
 }
 
 const navigation = [
 	{ name: "Home", href: "/", current: true },
-	{ name: "Shelters", href: "#", current: false },
+	{ name: "Shelters", href: "/allshelters", current: false },
 	{ name: "Help?", href: "#", current: false },
 	{ name: "Contact Us", href: "#", current: false },
 ];

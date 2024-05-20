@@ -1,0 +1,38 @@
+* {
+	padding: 0px;
+	margin: 0px;
+}
+#shelter {
+	padding: 20px;
+	margin: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+#shelter-card {
+	border: 1px solid black;
+	width: 60vw;
+	padding: 10px;
+	border-radius: 5px;
+	height: 20vh;
+	display: flex;
+}
+.shelter-image {
+	margin-right: 25px;
+	border-radius: 5px;
+	height: 154px;
+	width: 231px;
+}
+
+.shelter-details h2 {
+	font-weight: bold;
+	font-size: 27px;
+}
+.shelter-details h4 {
+	font-size: 18px;
+	font-style: italic;
+}
+.shelter-details p {
+	color: grey;
+	font-weight: 400;
+}

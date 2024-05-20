@@ -4,7 +4,7 @@ import Adopt from "../../assets/adopt.jpeg";
 import NavBar from "../../components/Navbar/Navbar.js";
 import logo from "../../assets/logo.png";
 import Footer from "../../components/Footer/Footer.js";
-
+import DonationForm from "../../components/DonationForm/DonationForm";
 const Home = () => {
 	return (
 		<>
@@ -47,6 +47,7 @@ const Home = () => {
 				<button>Help</button>
 			</div>
 			<Footer />
+			<DonationForm />
 		</>
 	);
 };
