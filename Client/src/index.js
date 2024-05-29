@@ -4,6 +4,7 @@ import Register from "./pages/Register/Register.js";
 import Login from "./pages/Login/login.js";
 import Home from "./pages/Home/Home.js";
 import AllShelters from "./pages/AllShelters/AllShelters.js";
+import Shelter from "./pages/ShelterSite/Shelter.js";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
 	{
 		path: "/allshelters",
 		element: <AllShelters />,
+	},
+	{
+		path: "/shelter",
+		element: <Shelter />,
 	},
 ]);
 // root.render(<App />);

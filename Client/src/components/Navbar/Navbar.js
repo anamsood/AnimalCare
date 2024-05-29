@@ -1,10 +1,11 @@
 import "./Navbar.css";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import Icon from "../../assets/icon.png";
 import Logo from "../../assets/logo.png";
 import DonationForm from "../DonationForm/DonationForm";
+
 function classNames(...classes) {
 	return classes.filter(Boolean).join(" ");
 }
@@ -18,6 +19,12 @@ const navigation = [
 
 export default function Navbar() {
 	// const navigate = useNavigate();
+	const [isDonate, setIsDonate] = useState(false);
+
+	const donateHandler = () => {
+		setIsDonate(true);
+	};
+
 	return (
 		<>
 			<Disclosure as="nav" className="bg-mediumgreen-800">
@@ -68,6 +75,8 @@ export default function Navbar() {
 								<div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
 									<button
 										type="button"
+										onClick={donateHandler}
+										donate={isDonate}
 										className="relative rounded-md px-3 py-2 p-1 text-black hover:text-white hover:bg-green-900 focus:ring-offset-gray-800"
 									>
 										Donate
@@ -150,6 +159,19 @@ export default function Navbar() {
 					</>
 				)}
 			</Disclosure>
+			{isDonate && (
+				<div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black bg-opacity-50 backdrop-blur-sm">
+					<div className="relative bg-white rounded-lg shadow-xl p-6 w-full max-w-md">
+						<button
+							className="absolute top-2 right-2 text-gray-400 hover:text-gray-600"
+							onClick={donateHandler}
+						>
+							<XMarkIcon className="h-6 w-6" />
+						</button>
+						<DonationForm />
+					</div>
+				</div>
+			)}
 		</>
 	);
 }

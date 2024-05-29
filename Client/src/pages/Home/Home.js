@@ -5,10 +5,14 @@ import NavBar from "../../components/Navbar/Navbar.js";
 import logo from "../../assets/logo.png";
 import Footer from "../../components/Footer/Footer.js";
 import DonationForm from "../../components/DonationForm/DonationForm";
-const Home = () => {
+import { useState } from "react";
+
+const Home = (props) => {
+	// const [isDonate, setIsDonate] = useState(false);
+	let isDonate;
 	return (
 		<>
-			<NavBar />
+			<NavBar isDonate={props.donate} />
 			<div id="body">
 				<p>
 					We beleive every animal<br></br> deserves a second chance.
@@ -47,7 +51,7 @@ const Home = () => {
 				<button>Help</button>
 			</div>
 			<Footer />
-			<DonationForm />
+			{isDonate && <DonationForm />}
 		</>
 	);
 };

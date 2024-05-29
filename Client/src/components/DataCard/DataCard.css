@@ -1,0 +1,19 @@
+.data-card {
+	display: flex;
+	flex-direction: column;
+	height: 33vh;
+	width: 20vw;
+	border: 1px solid black;
+	border-radius: 10px;
+	align-items: center;
+}
+.data-image {
+	height: 27vh;
+	width: 20vw;
+	border-radius: 10px;
+}
+.data-card p {
+	font-size: 24px;
+	font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+	font-weight: bold;
+}

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import ShelterCard from "../../components/ShelterCard/ShelterCard.js";
 import "./AllShelters.css";
@@ -6,6 +7,7 @@ import "./AllShelters.css";
 function AllShelters() {
 	const [data, setData] = useState([]);
 	const [filter, setFilter] = useState("All");
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		fetch("http://localhost:4000/api/v2/shelters")
@@ -25,6 +27,10 @@ function AllShelters() {
 			return shelter.city === filter;
 		}
 	});
+
+	const shelterHandler = (title) => {
+		navigate("/shelter", { state: { title } });
+	};
 	return (
 		<>
 			<Navbar />
@@ -44,6 +50,7 @@ function AllShelters() {
 					image={shelter.image}
 					open={shelter.open}
 					close={shelter.close}
+					onClick={() => shelterHandler(shelter.title)}
 				/>
 			))}
 		</>

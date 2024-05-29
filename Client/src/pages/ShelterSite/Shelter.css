@@ -1,0 +1,19 @@
+#shelter-data {
+	padding: 20px;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	column-gap: 10px;
+	row-gap: 10px;
+	height: 90vh;
+}
+#main h1 {
+	font-size: 40px;
+	font-weight: 400;
+	text-decoration: aqua;
+	align-items: center;
+	justify-content: center;
+	margin: 20px;
+	margin-bottom: 30px;
+	font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva,
+		Verdana, sans-serif;
+}

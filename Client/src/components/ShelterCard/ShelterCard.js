@@ -3,7 +3,7 @@ function ShelterCard(props) {
 	return (
 		<>
 			<div id="shelter">
-				<div id="shelter-card">
+				<div id="shelter-card" onClick={props.onClick}>
 					<img className="shelter-image" src={props.image} alt="shelter" />
 					<span className="shelter-details">
 						<h2>{props.title}</h2>
