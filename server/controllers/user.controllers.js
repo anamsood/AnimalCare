@@ -1,15 +1,16 @@
 import { User } from "../models/user.models.js";
+import { ApiResponse } from "../utils/ApiResponse.js";
 
 const generateAccessAndRefreshToken = async (userId) => {
 	try {
 		const user = await User.findById(userId);
 
-		const accessToken = user.generateAccessToken();
-		const refreshToken = user.generateRefreshToken();
+		const accessToken = await user.generateAccessToken();
+		const refreshToken = await user.generateRefreshToken();
 
 		user.refreshToken = refreshToken;
 
-		await user.save();
+		await user.save({ validateBeforeSave: false });
 		return { accessToken, refreshToken };
 	} catch (error) {
 		console.log(error, "something went wrong");
@@ -66,15 +67,24 @@ const login = async (req, res) => {
 	const { accessToken, refreshToken } = await generateAccessAndRefreshToken(user._id);
 
 	const options = {
+		withCredentials: true,
 		secure: true,
-		httpOnly: true,
 	};
 
 	return res
 		.status(200)
 		.cookie("accessToken", accessToken, options)
 		.cookie("refreshToken", refreshToken, options)
-		.json("User loggedIn successfully");
+		.json(
+			new ApiResponse(
+				200,
+				{
+					accessToken,
+					refreshToken,
+				},
+				"User loggedIn successfully"
+			)
+		);
 };
 
 const logout = async (req, res) => {
@@ -92,7 +102,7 @@ const logout = async (req, res) => {
 		);
 
 		const options = {
-			httpOnly: true,
+			withCredentials: true,
 			secure: true,
 		};
 
@@ -100,7 +110,7 @@ const logout = async (req, res) => {
 			.status(200)
 			.clearCookie("accessToken", options)
 			.clearCookie("refreshToken", options)
-			.json("User logged out successfully");
+			.json(new ApiResponse(200, {}, "User loggedOut successfully"));
 	} catch (error) {
 		return res.status(500).json("an error occured during logout");
 	}

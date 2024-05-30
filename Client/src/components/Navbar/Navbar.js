@@ -1,14 +1,14 @@
 import "./Navbar.css";
-import { useState } from "react";
+import React, { useContext, useState } from "react";
 import Icon from "../../assets/icon.png";
 import Logo from "../../assets/logo.png";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { AuthContext } from "../../Context/AuthContext.js";
 
 export default function Navbar({ login }) {
 	const navigate = useNavigate();
-	const isLogin = login;
-	// console.log(isLogin);
+	const { isAuthenticated, logout } = useContext(AuthContext);
 
 	const [dropdownVisible, setDropdownVisible] = useState(false);
 
@@ -17,10 +17,8 @@ export default function Navbar({ login }) {
 	};
 
 	const logoutHandler = async () => {
-		const response = await axios.post("http://localhost:4000/api/v2/logout", {});
-		if (response.status === 200) {
-			navigate("/");
-		}
+		await logout();
+		navigate("/");
 	};
 
 	const homeHandler = (event) => {

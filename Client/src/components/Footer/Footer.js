@@ -3,7 +3,7 @@ const Footer = function () {
 	return (
 		<>
 			<div id="footer">
-				<div class="containers">
+				<div className="containers">
 					<span className="cols">
 						<h2>ABOUT US</h2>
 						<p>Terms and conditions</p>

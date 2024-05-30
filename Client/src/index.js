@@ -6,6 +6,7 @@ import Home from "./pages/Home/Home.js";
 import AllShelters from "./pages/AllShelters/AllShelters.js";
 import Shelter from "./pages/ShelterSite/Shelter.js";
 import Donate from "./pages/Donate/Donate.js";
+import { AuthProvider } from "../../Client/src/Context/AuthContext.js";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -40,6 +41,8 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 	<React.StrictMode>
-		<RouterProvider router={router} />
+		<AuthProvider>
+			<RouterProvider router={router} />
+		</AuthProvider>
 	</React.StrictMode>
 );

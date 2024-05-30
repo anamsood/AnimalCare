@@ -1,4 +1,10 @@
 .filter-container {
 	margin-top: 20px;
 	margin-left: 15vw;
+	background-color: white; /* Background color for options */
+	color: black;
+}
+.filter-container select {
+	position: relative;
+	overflow: hidden;
 }

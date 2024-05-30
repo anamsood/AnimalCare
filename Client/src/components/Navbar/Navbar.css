@@ -1,6 +1,3 @@
-/* Reset some basic styles */
-
-/* Navbar container */
 .navbar {
 	display: flex;
 	justify-content: space-around;
@@ -17,18 +14,15 @@
 	background-color: #b0c4b1;
 }
 
-/* Navbar left side items */
 .navbar-left .nav-item {
 	margin-right: 20px;
 	margin-left: 5px;
-	/* text-decoration: none; */
 	color: black;
 	font-size: 20px;
 	padding: 5px;
 	border-radius: 5px;
 }
 
-/* Navbar right side items */
 .navbar-right .nav-item {
 	margin-left: 20px;
 	margin-right: 5px;
@@ -36,22 +30,18 @@
 	color: black;
 }
 
-/* Hover effect for navigation items */
 .nav-item:hover {
 	background-color: #0c310ed7;
 	color: #f1f1f1;
 }
 
-/* User icon style */
 .user-icon {
 	width: 3vw;
 	height: 4vh;
-	/* border-radius: 50%; */
 }
 .navbar-right {
 	display: flex;
 	align-items: center;
-
 	position: relative;
 	cursor: pointer;
 }

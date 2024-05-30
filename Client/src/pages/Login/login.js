@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../../index.css";
+import { AuthContext } from "../../Context/AuthContext.js";
+
 import Navbar from "../../components/Navbar/Navbar.js";
 import Footer from "../../components/Footer/Footer.js";
 import "./login.css";
@@ -9,7 +11,7 @@ import "./login.css";
 function Login() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const [isLogin, setIsLogin] = useState(false);
+	const { login } = useContext(AuthContext);
 
 	const navigate = useNavigate();
 
@@ -23,23 +25,20 @@ function Login() {
 
 	const handleFormSubmit = async (event) => {
 		event.preventDefault();
-		try {
-			const result = await axios.post("http://localhost:4000/api/v2/login", {
-				password: password,
-				email: email,
-			});
-			console.log(result);
-			if (result.status === 200) {
-				navigate("/");
-			}
-		} catch (error) {
-			console.log("error in Login form: ", error);
+
+		const success = await login(email, password);
+		if (success) {
+			console.log("login successful");
+			navigate("/");
+		} else {
+			console.log("Login failed");
 		}
 	};
+
 	return (
 		<>
 			<div id="login">
-				<Navbar login={isLogin} />
+				<Navbar />
 
 				<div className="flex h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
 					<div className="sm:mx-auto sm:w-full sm:max-w-sm">
