@@ -4,20 +4,22 @@ import Adopt from "../../assets/adopt.jpeg";
 import NavBar from "../../components/Navbar/Navbar.js";
 import logo from "../../assets/logo.png";
 import Footer from "../../components/Footer/Footer.js";
-import DonationForm from "../../components/DonationForm/DonationForm";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Home = (props) => {
-	// const [isDonate, setIsDonate] = useState(false);
-	let isDonate;
+	const navigate = useNavigate();
+	const clickHandler = (event) => {
+		event.preventDefault();
+		navigate("/donate");
+	};
 	return (
 		<>
-			<NavBar isDonate={props.donate} />
+			<NavBar />
 			<div id="body">
 				<p>
 					We beleive every animal<br></br> deserves a second chance.
 				</p>
-				<button>Donate Now!</button>
+				<button onClick={clickHandler}>Donate Now!</button>
 			</div>
 			<div id="stats">
 				<img src={logo} alt="stats-img" />
@@ -51,7 +53,6 @@ const Home = (props) => {
 				<button>Help</button>
 			</div>
 			<Footer />
-			{isDonate && <DonationForm />}
 		</>
 	);
 };

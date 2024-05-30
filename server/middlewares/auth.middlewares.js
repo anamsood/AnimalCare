@@ -3,9 +3,9 @@ import { User } from "../models/user.models.js";
 
 export const verifyJWT = async (req, res, next) => {
 	try {
-		const token = req.cookies?.accessToken;
+		const token = req.cookies?.accessToken || req.header("Authorization")?.replace("Bearer ", "");
 		if (!token) {
-			return res.status(401).send("token not found");
+			return res.status(403).json("token not found");
 		}
 
 		const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
@@ -18,6 +18,6 @@ export const verifyJWT = async (req, res, next) => {
 		req.user = user;
 		next();
 	} catch (error) {
-		return res.status(401).json(error.message);
+		return res.status(401).json("error in auth", error.message);
 	}
 };

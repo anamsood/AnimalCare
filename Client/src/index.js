@@ -5,6 +5,7 @@ import Login from "./pages/Login/login.js";
 import Home from "./pages/Home/Home.js";
 import AllShelters from "./pages/AllShelters/AllShelters.js";
 import Shelter from "./pages/ShelterSite/Shelter.js";
+import Donate from "./pages/Donate/Donate.js";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
 	{
 		path: "/shelter",
 		element: <Shelter />,
+	},
+	{
+		path: "/donate",
+		element: <Donate />,
 	},
 ]);
 // root.render(<App />);

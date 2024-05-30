@@ -3,17 +3,24 @@
 	flex-direction: column;
 	height: 33vh;
 	width: 20vw;
-	border: 1px solid black;
+	border: 1.7px solid rgba(187, 25, 49, 0.695);
 	border-radius: 10px;
 	align-items: center;
 }
 .data-image {
 	height: 27vh;
 	width: 20vw;
-	border-radius: 10px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
 }
-.data-card p {
+.data-card button {
 	font-size: 24px;
 	font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 	font-weight: bold;
+	width: 20vw;
+	background-color: rgb(219, 163, 181);
+	height: 6vh;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	border: 1.7px solid rgba(187, 25, 49, 0.695);
 }

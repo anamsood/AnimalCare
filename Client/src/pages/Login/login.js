@@ -9,6 +9,7 @@ import "./login.css";
 function Login() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [isLogin, setIsLogin] = useState(false);
 
 	const navigate = useNavigate();
 
@@ -38,7 +39,7 @@ function Login() {
 	return (
 		<>
 			<div id="login">
-				<Navbar />
+				<Navbar login={isLogin} />
 
 				<div className="flex h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
 					<div className="sm:mx-auto sm:w-full sm:max-w-sm">

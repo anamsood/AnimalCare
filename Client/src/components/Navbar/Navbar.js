@@ -1,177 +1,77 @@
 import "./Navbar.css";
-import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import Icon from "../../assets/icon.png";
 import Logo from "../../assets/logo.png";
-import DonationForm from "../DonationForm/DonationForm";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-function classNames(...classes) {
-	return classes.filter(Boolean).join(" ");
-}
+export default function Navbar({ login }) {
+	const navigate = useNavigate();
+	const isLogin = login;
+	// console.log(isLogin);
 
-const navigation = [
-	{ name: "Home", href: "/", current: true },
-	{ name: "Shelters", href: "/allshelters", current: false },
-	{ name: "Help?", href: "#", current: false },
-	{ name: "Contact Us", href: "#", current: false },
-];
+	const [dropdownVisible, setDropdownVisible] = useState(false);
 
-export default function Navbar() {
-	// const navigate = useNavigate();
-	const [isDonate, setIsDonate] = useState(false);
+	const toggleDropdown = () => {
+		setDropdownVisible(!dropdownVisible);
+	};
 
-	const donateHandler = () => {
-		setIsDonate(true);
+	const logoutHandler = async () => {
+		const response = await axios.post("http://localhost:4000/api/v2/logout", {});
+		if (response.status === 200) {
+			navigate("/");
+		}
+	};
+
+	const homeHandler = (event) => {
+		event.preventDefault();
+		navigate("/");
+	};
+
+	const shelterHandler = (event) => {
+		event.preventDefault();
+		navigate("/allshelters");
+	};
+	const donateHandler = (event) => {
+		event.preventDefault();
+		navigate("/donate");
 	};
 
 	return (
 		<>
-			<Disclosure as="nav" className="bg-mediumgreen-800">
-				{({ open }) => (
-					<>
-						<div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-							<div className="relative flex h-16 items-center justify-between">
-								<div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-									<Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-										<span className="absolute -inset-0.5" />
-										<span className="sr-only">Open main menu</span>
-										{open ? (
-											<XMarkIcon className="block h-6 w-6" aria-hidden="true" />
-										) : (
-											<Bars3Icon className="block h-6 w-6" aria-hidden="true" />
-										)}
-									</Disclosure.Button>
-								</div>
-								<div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-									<div className="flex flex-shrink-0 items-center">
-										<img
-											id="img"
-											className="h-8 w-auto bg-mediumgreen"
-											src={Logo}
-											alt="Your Company"
-										/>
-									</div>
-									<div className="hidden sm:ml-6 sm:block">
-										<div className="flex space-x-4">
-											{navigation.map((item) => (
-												<a
-													key={item.name}
-													href={item.href}
-													className={classNames(
-														item.current
-															? "bg-green-900 text-white"
-															: "text-black hover:bg-green-800 hover:text-white",
-														"rounded-md px-3 py-2 text-sm font-medium"
-													)}
-													aria-current={item.current ? "page" : undefined}
-												>
-													{item.name}
-												</a>
-											))}
-										</div>
-									</div>
-								</div>
-								<div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-									<button
-										type="button"
-										onClick={donateHandler}
-										donate={isDonate}
-										className="relative rounded-md px-3 py-2 p-1 text-black hover:text-white hover:bg-green-900 focus:ring-offset-gray-800"
-									>
-										Donate
-										<span className="absolute -inset-1.5" />
-										<span className="sr-only">View notifications</span>
-									</button>
-
-									<Menu as="div" className="relative ml-3">
-										<div>
-											<Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-												<span className="absolute -inset-1.5" />
-												<span className="sr-only">Open user menu</span>
-												<img className="h-8 w-8 rounded-full bg-green-50" src={Icon} alt="" />
-											</Menu.Button>
-										</div>
-										<Transition
-											as={Fragment}
-											enter="transition ease-out duration-100"
-											enterFrom="transform opacity-0 scale-95"
-											enterTo="transform opacity-100 scale-100"
-											leave="transition ease-in duration-75"
-											leaveFrom="transform opacity-100 scale-100"
-											leaveTo="transform opacity-0 scale-95"
-										>
-											<Menu.Items className="absolute right--1 z-10 mt-2 w-40 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-												<Menu.Item>
-													{({ active }) => (
-														<a
-															href="/login"
-															className={classNames(
-																active ? "bg-gray-100" : "",
-																"block px-8 py-2 text-sm text-gray-700"
-															)}
-														>
-															Login
-														</a>
-													)}
-												</Menu.Item>
-
-												<Menu.Item>
-													{({ active }) => (
-														<a
-															href="/register"
-															className={classNames(
-																active ? "bg-gray-100" : "",
-																"block px-8 py-2 text-sm text-gray-700"
-															)}
-														>
-															Sign up
-														</a>
-													)}
-												</Menu.Item>
-											</Menu.Items>
-										</Transition>
-									</Menu>
-								</div>
+			<nav className="navbar">
+				<img src={Logo} alt="logo" className="logo" />
+				<div className="navbar-left">
+					<button onClick={homeHandler} className="nav-item">
+						Home
+					</button>
+					<button onClick={shelterHandler} className="nav-item">
+						Shelters
+					</button>
+					<button className="nav-item">Contact Us</button>
+					<button onClick={donateHandler} className="nav-item">
+						Donate
+					</button>
+				</div>
+				<div className="navbar-right">
+					<img src={Icon} alt="User Icon" onClick={toggleDropdown} className="user-icon" />
+					{dropdownVisible && (
+						<div className="dropdown-menu">
+							<div>
+								<a href="/login" className="dropdown-item">
+									Login
+								</a>
+								<a href="/register" className="dropdown-item">
+									Sign Up
+								</a>
+								<a className="dropdown-item" onClick={logoutHandler}>
+									Logout
+								</a>
 							</div>
 						</div>
-
-						<Disclosure.Panel className="sm:hidden">
-							<div className="space-y-1 px-2 pb-3 pt-2">
-								{navigation.map((item) => (
-									<Disclosure.Button
-										key={item.name}
-										as="a"
-										href={item.href}
-										className={classNames(
-											item.current
-												? "bg-gray-900 text-white"
-												: "text-gray-300 hover:bg-gray-700 hover:text-white",
-											"block rounded-md px-3 py-2 text-base font-medium"
-										)}
-										aria-current={item.current ? "page" : undefined}
-									>
-										{item.name}
-									</Disclosure.Button>
-								))}
-							</div>
-						</Disclosure.Panel>
-					</>
-				)}
-			</Disclosure>
-			{isDonate && (
-				<div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black bg-opacity-50 backdrop-blur-sm">
-					<div className="relative bg-white rounded-lg shadow-xl p-6 w-full max-w-md">
-						<button
-							className="absolute top-2 right-2 text-gray-400 hover:text-gray-600"
-							onClick={donateHandler}
-						>
-							<XMarkIcon className="h-6 w-6" />
-						</button>
-						<DonationForm />
-					</div>
+					)}
 				</div>
-			)}
+			</nav>
 		</>
 	);
 }

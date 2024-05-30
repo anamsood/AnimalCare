@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const formSchema = mongoose.Schema({
+const helpingFormSchema = mongoose.Schema({
 	email: {
 		type: String,
 		required: true,
@@ -24,5 +24,5 @@ const formSchema = mongoose.Schema({
 	},
 });
 
-const Form = new mongoose.model("Form", formSchema);
-export { Form };
+const HelpingForm = new mongoose.model("helping-form", helpingFormSchema);
+export { HelpingForm };
