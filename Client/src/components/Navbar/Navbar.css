@@ -36,8 +36,10 @@
 }
 
 .user-icon {
-	width: 3vw;
-	height: 4vh;
+	width: 2vw;
+	height: 3.5vh;
+	color: black;
+	font-size: 4px;
 }
 .navbar-right {
 	display: flex;

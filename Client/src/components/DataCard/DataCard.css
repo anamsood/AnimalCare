@@ -3,7 +3,9 @@
 	flex-direction: column;
 	height: 33vh;
 	width: 20vw;
-	border: 1.7px solid rgba(187, 25, 49, 0.695);
+	/* border: 1.7px solid rgba(187, 25, 49, 0.695); */
+	border: 1.7px solid green;
+
 	border-radius: 10px;
 	align-items: center;
 }
@@ -18,9 +20,11 @@
 	font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 	font-weight: bold;
 	width: 20vw;
-	background-color: rgb(219, 163, 181);
+	background-color: #d4e8d6ca;
+	/* background-color: #f0dbf4; */
 	height: 6vh;
 	border-bottom-left-radius: 10px;
 	border-bottom-right-radius: 10px;
-	border: 1.7px solid rgba(187, 25, 49, 0.695);
+	/* border: 1.7px solid rgba(187, 25, 49, 0.695); */
+	border: 1.7px solid green;
 }

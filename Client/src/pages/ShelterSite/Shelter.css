@@ -10,7 +10,8 @@
 	font-size: 40px;
 	font-weight: 400;
 	text-decoration: plum;
-	color: plum;
+	/* color: plum; */
+	color: black;
 	align-items: center;
 	justify-content: center;
 	margin-bottom: 30px;
@@ -18,6 +19,6 @@
 		Verdana, sans-serif;
 }
 #main {
-	background-color: gainsboro;
+	background-color: white;
 	margin: 0px;
 }

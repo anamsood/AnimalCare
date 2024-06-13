@@ -12,7 +12,9 @@ function Shelter() {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const response = await axios.get(`http://localhost:4000/api/v2/shelter-data/${title}`);
+				const response = await axios.get(`http://localhost:4000/api/v2/shelter-data/${title}`, {
+					withCredentials: true,
+				});
 				setData(response.data);
 				console.log(response.data);
 			} catch (error) {

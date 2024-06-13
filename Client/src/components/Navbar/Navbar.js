@@ -1,24 +1,18 @@
 import "./Navbar.css";
 import React, { useContext, useState } from "react";
-import Icon from "../../assets/icon.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-regular-svg-icons";
 import Logo from "../../assets/logo.png";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { AuthContext } from "../../Context/AuthContext.js";
 
-export default function Navbar({ login }) {
+export default function Navbar() {
 	const navigate = useNavigate();
-	const { isAuthenticated, logout } = useContext(AuthContext);
-
+	const { isAuthenticated, logout, user } = useContext(AuthContext);
 	const [dropdownVisible, setDropdownVisible] = useState(false);
 
 	const toggleDropdown = () => {
 		setDropdownVisible(!dropdownVisible);
-	};
-
-	const logoutHandler = async () => {
-		await logout();
-		navigate("/");
 	};
 
 	const homeHandler = (event) => {
@@ -33,6 +27,11 @@ export default function Navbar({ login }) {
 	const donateHandler = (event) => {
 		event.preventDefault();
 		navigate("/donate");
+	};
+
+	const logoutHandler = async () => {
+		await logout();
+		navigate("/");
 	};
 
 	return (
@@ -52,20 +51,24 @@ export default function Navbar({ login }) {
 					</button>
 				</div>
 				<div className="navbar-right">
-					<img src={Icon} alt="User Icon" onClick={toggleDropdown} className="user-icon" />
+					<FontAwesomeIcon className="user-icon" icon={faUser} onClick={toggleDropdown} />
+					{isAuthenticated && <p>{user}</p>}
 					{dropdownVisible && (
 						<div className="dropdown-menu">
-							<div>
-								<a href="/login" className="dropdown-item">
-									Login
-								</a>
-								<a href="/register" className="dropdown-item">
-									Sign Up
-								</a>
+							{isAuthenticated ? (
 								<a className="dropdown-item" onClick={logoutHandler}>
 									Logout
 								</a>
-							</div>
+							) : (
+								<div>
+									<a href="/login" className="dropdown-item">
+										Login
+									</a>
+									<a href="/register" className="dropdown-item">
+										Sign Up
+									</a>
+								</div>
+							)}
 						</div>
 					)}
 				</div>

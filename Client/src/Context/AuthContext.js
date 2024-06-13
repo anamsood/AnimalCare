@@ -19,14 +19,13 @@ export const AuthProvider = ({ children }) => {
 					headers: {
 						"Content-Type": "application/json",
 					},
+					withCredentials: true,
 				}
 			);
 
 			if (result.status === 200) {
-				// localStorage.setItem("accessToken", result.data.accessToken);
-				// localStorage.setItem("refershToken", result.data.refershToken);
-
 				setUser(result.data.user);
+				console.log(user);
 				setIsAuthenticated(true);
 				return true;
 			}
@@ -38,13 +37,14 @@ export const AuthProvider = ({ children }) => {
 
 	const logout = async () => {
 		try {
-			const response = await axios.post("http://localhost:4000/api/v2/logout", {
-				withCredentials: true,
-			});
+			const response = await axios.post(
+				"http://localhost:4000/api/v2/logout",
+				{},
+				{
+					withCredentials: true,
+				}
+			);
 			if (response.status === 200) {
-				// localStorage.removeItem("accessToken");
-				// localStorage.removeItem("refershToken");
-
 				setUser(null);
 				setIsAuthenticated(false);
 			}
@@ -53,8 +53,29 @@ export const AuthProvider = ({ children }) => {
 		}
 	};
 
+	const donationForm = async (plan, amount, shelter) => {
+		try {
+			const response = await axios.post(
+				"http://localhost:4000/api/v2/donation-form",
+				{
+					plan: plan,
+					amount: amount,
+					shelterName: shelter,
+				},
+				{ withCredentials: true }
+			);
+			if (response.status === 200) {
+				console.log("form added successfully:", response);
+				return true;
+			}
+		} catch (error) {
+			console.log(error);
+			return false;
+		}
+	};
+
 	return (
-		<AuthContext.Provider value={{ isAuthenticated, user, login, logout }}>
+		<AuthContext.Provider value={{ isAuthenticated, user, login, logout, donationForm }}>
 			{children}
 		</AuthContext.Provider>
 	);

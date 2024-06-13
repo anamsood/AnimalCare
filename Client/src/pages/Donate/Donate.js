@@ -4,12 +4,8 @@ import "./Donate.css";
 import React, { useContext, useState } from "react";
 import Image from "../../assets/donationform.webp";
 import Footer from "../../components/Footer/Footer.js";
-import { AuthContext } from "../../Context/AuthContext.js";
-import AuthModal from "../../components/AuthModal/AuthModal";
 
 function Donate() {
-	const { isLoggedIn } = useContext(AuthContext);
-
 	return (
 		<>
 			<Navbar />
@@ -17,7 +13,6 @@ function Donate() {
 				<img src={Image} />
 				<DonationForm />
 			</div>
-			{!isLoggedIn && <AuthModal />}
 			<Footer />
 		</>
 	);

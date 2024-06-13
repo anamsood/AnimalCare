@@ -1,29 +1,34 @@
 import "./DonationForm.css";
-import AuthModal from "../AuthModal/AuthModal.js";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import ErrorModal from "../ErrorModal/ErrorModal.js";
+import { useEffect, useState, useContext } from "react";
+import { AuthContext } from "../../Context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 function DonationForm() {
 	const navigate = useNavigate();
 	const [plan, setPlan] = useState("");
-	const [amount, setAmount] = useState(0);
+	const [amount, setAmount] = useState();
 	const [shelter, setShelter] = useState("");
+	const [showModal, setShowModal] = useState(false);
+
+	const { isAuthenticated, donationForm } = useContext(AuthContext);
+
+	const closeModal = () => {
+		setShowModal(false);
+	};
 
 	const donateHandler = async (event) => {
 		event.preventDefault();
-		try {
-			const response = await axios.post("http://localhost:4000/api/v2/donation-form", {
-				plan: plan,
-				amount: amount,
-				shelterName: shelter,
-			});
-			console.log(response);
-			if (response.status === 200) {
+		if (!isAuthenticated) {
+			setShowModal(true);
+		} else {
+			const success = await donationForm(plan, amount, shelter);
+			if (success) {
+				console.log("form added successful");
 				navigate("/");
+			} else {
+				console.log("Login failed");
 			}
-		} catch (error) {
-			console.log(error);
 		}
 	};
 
@@ -41,6 +46,7 @@ function DonationForm() {
 	};
 	return (
 		<>
+			{showModal && <ErrorModal show={showModal} onClose={closeModal} />}
 			<div id="donation">
 				<form id="donation-form">
 					<label>Your sponsered shelter</label>
@@ -79,7 +85,6 @@ function DonationForm() {
 
 					<button onClick={donateHandler}>Donate</button>
 				</form>
-				{/* {isActive && <AuthModal />} */}
 			</div>
 		</>
 	);
