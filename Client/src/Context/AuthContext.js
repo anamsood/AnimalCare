@@ -24,8 +24,8 @@ export const AuthProvider = ({ children }) => {
 			);
 
 			if (result.status === 200) {
-				setUser(result.data.user);
-				console.log(user);
+				setUser(result.data.data.user.fullname);
+				console.log(result.data.data.user.fullname);
 				setIsAuthenticated(true);
 				return true;
 			}

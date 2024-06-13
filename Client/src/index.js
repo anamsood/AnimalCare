@@ -7,7 +7,6 @@ import AllShelters from "./pages/AllShelters/AllShelters.js";
 import Shelter from "./pages/ShelterSite/Shelter.js";
 import Donate from "./pages/Donate/Donate.js";
 import { AuthProvider } from "../../Client/src/Context/AuthContext.js";
-
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([

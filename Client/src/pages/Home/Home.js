@@ -1,20 +1,29 @@
 import "./Home.css";
+import { useState } from "react";
 import Feed from "../../assets/feed-animals.jpeg";
 import Adopt from "../../assets/adopt.jpeg";
 import NavBar from "../../components/Navbar/Navbar.js";
 import logo from "../../assets/logo.png";
 import Footer from "../../components/Footer/Footer.js";
 import { useNavigate } from "react-router-dom";
+import HelpingForm from "../../components/HelpingForm/HelpingForm";
 
 const Home = (props) => {
 	const navigate = useNavigate();
+	const [showForm, setShowForm] = useState(false);
+
 	const clickHandler = (event) => {
 		event.preventDefault();
 		navigate("/donate");
 	};
+
+	const closeForm = () => {
+		setShowForm(false);
+	};
 	return (
 		<>
 			<NavBar />
+			{showForm && <HelpingForm show={showForm} close={closeForm} />}
 			<div id="body">
 				<p>
 					We beleive every animal<br></br> deserves a second chance.
@@ -50,7 +59,7 @@ const Home = (props) => {
 						Fill this form and <br></br>nearest available shelters will be there in no time.
 					</p>
 				</span>
-				<button>Help</button>
+				<button onClick={() => setShowForm(true)}>Help</button>
 			</div>
 			<Footer />
 		</>

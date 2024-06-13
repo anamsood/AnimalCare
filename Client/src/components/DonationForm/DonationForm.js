@@ -10,12 +10,9 @@ function DonationForm() {
 	const [amount, setAmount] = useState();
 	const [shelter, setShelter] = useState("");
 	const [showModal, setShowModal] = useState(false);
+	const [data, setData] = useState([]);
 
 	const { isAuthenticated, donationForm } = useContext(AuthContext);
-
-	const closeModal = () => {
-		setShowModal(false);
-	};
 
 	const donateHandler = async (event) => {
 		event.preventDefault();
@@ -32,6 +29,13 @@ function DonationForm() {
 		}
 	};
 
+	useEffect(() => {
+		fetch("http://localhost:4000/api/v2/shelter/title")
+			.then((response) => response.json())
+			.then((data) => setData(data))
+			.catch((error) => console.error("Error fetching data:", error));
+	}, []);
+
 	const planHandler = (event) => {
 		setPlan(event.target.value);
 	};
@@ -44,6 +48,11 @@ function DonationForm() {
 		console.log(event.target.value);
 		setShelter(event.target.value);
 	};
+
+	const closeModal = () => {
+		setShowModal(false);
+	};
+	console.log(data);
 	return (
 		<>
 			{showModal && <ErrorModal show={showModal} onClose={closeModal} />}
@@ -51,9 +60,11 @@ function DonationForm() {
 				<form id="donation-form">
 					<label>Your sponsered shelter</label>
 					<select onChange={shelterHandler}>
-						<option value="A">A</option>
-						<option value="B">b</option>
-						<option value="C">c</option>
+						{data.map((title, index) => (
+							<option key={index} value={title}>
+								{title}
+							</option>
+						))}
 					</select>
 
 					<label>Plan</label>

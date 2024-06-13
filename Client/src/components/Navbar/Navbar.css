@@ -47,6 +47,11 @@
 	position: relative;
 	cursor: pointer;
 }
+.user-text {
+	margin-left: 5px;
+	color: black;
+	font-weight: bold;
+}
 .dropdown-menu {
 	position: absolute;
 	top: 40px;

@@ -6,7 +6,7 @@
 	padding: 20px;
 	min-height: 100vh;
 }
-#main h1 {
+.shelter-text {
 	font-size: 40px;
 	font-weight: 400;
 	text-decoration: plum;

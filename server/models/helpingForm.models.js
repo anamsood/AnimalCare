@@ -15,12 +15,10 @@ const helpingFormSchema = mongoose.Schema({
 	},
 	image: {
 		type: String,
-		required: false,
 	},
 	recieveEmail: {
 		type: Boolean,
 		default: false,
-		required: true,
 	},
 });
 

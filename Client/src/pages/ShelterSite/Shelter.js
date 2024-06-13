@@ -31,11 +31,11 @@ function Shelter() {
 			<Navbar />
 			<div id="main">
 				<center>
-					<h1>{title}</h1>
+					<h1 className="shelter-text">{title}</h1>
 				</center>
 				<div id="shelter-data">
-					{data.map((item) => (
-						<DataCard key={item.id} image={item.url} alt={item.title} />
+					{data.map((item, index) => (
+						<DataCard key={item.id || index} image={item.url} alt={item.title} />
 					))}
 				</div>
 			</div>

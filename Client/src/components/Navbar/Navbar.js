@@ -52,7 +52,7 @@ export default function Navbar() {
 				</div>
 				<div className="navbar-right">
 					<FontAwesomeIcon className="user-icon" icon={faUser} onClick={toggleDropdown} />
-					{isAuthenticated && <p>{user}</p>}
+					{isAuthenticated && <p className="user-text">{user}</p>}
 					{dropdownVisible && (
 						<div className="dropdown-menu">
 							{isAuthenticated ? (

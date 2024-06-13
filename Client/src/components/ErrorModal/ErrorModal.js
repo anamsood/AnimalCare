@@ -3,14 +3,16 @@ import { useNavigate } from "react-router-dom";
 
 function ErrorModal({ show, onClose }) {
 	const navigate = useNavigate();
+
+	if (!show) {
+		return null;
+	}
+
 	const loginHandler = (event) => {
 		event.preventDefault();
 		navigate("/login");
 	};
 
-	if (!show) {
-		return null;
-	}
 	return (
 		<>
 			<div id="error-container" className="hidden">
@@ -18,7 +20,7 @@ function ErrorModal({ show, onClose }) {
 					<button id="cancel" onClick={onClose}>
 						X
 					</button>
-					<h1>Login to continue!</h1>
+					<h1 className="error-text">Login to continue!</h1>
 					<button onClick={loginHandler}>Login</button>
 				</div>
 			</div>

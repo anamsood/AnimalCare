@@ -26,3 +26,9 @@ export const shelterData = async (req, res) => {
 		res.status(500).json({ message: error.message });
 	}
 };
+export const getTitles = async (req, res) => {
+	const data = await Shelters.find();
+	const titles = data.map((shelter) => shelter.title);
+
+	res.json(titles);
+};
